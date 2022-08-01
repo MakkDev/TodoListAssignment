@@ -51,7 +51,20 @@ const getPosts = () => {
         itemCount--;
         setItemCount();
         deletePost(item.id); 
-    })  
+    })
+    // editIcon.addEventListener('click', function(){
+    //     var editField = document.createElement("input");
+    //     todoList.appendChild(editField)
+    //     todoItem.style.display = "none"
+    //     editField.value = todoText.value;
+    //     editField.addEventListener("keydown", function (event) {
+    //          if (event.key === "Enter")
+    //          todoText.value = editField.value;
+    //          editField.style.display = "none"
+    //          todoItem.style.display = "unset"
+    //            })
+
+    // })  
         })
         
     })
@@ -146,6 +159,19 @@ const addItem = () => {
                 setItemCount();
                 deletePost(todo.id)        
             })
+    // editIcon.addEventListener('click', function(){
+    //     var editField = document.createElement("input");
+    //     todoList.appendChild(editField)
+    //     todoItem.style.display = "none"
+    //     editField.value = todoText.value;
+    //     editField.addEventListener("keydown", function (event) {
+    //          if (event.key === "Enter")
+    //          todoText.value = editField.value;
+    //          editField.style.display = "none"
+    //          todoItem.style.display = "unset"
+    //            })
+
+    // })        
         
     }
     
@@ -166,3 +192,13 @@ inputField.addEventListener("keydown", function (event) {
     addItem();
 })
 clearListButton.addEventListener('click', clearList);
+
+const createInput = () => {
+    paragraph.style.display = "hidden"
+    var editField = document.createElement("input");
+    editField.value = todoText.value;
+    editField.addEventListener("keydown", function (event) {
+        if (event.key === "Enter")
+        addItem();
+    })
+}
