@@ -18,6 +18,7 @@ const getPosts = () => {
     .then(data => {
         const posts = data.map((item) => {
     var todoItem = document.createElement("p");
+    var todoText = document.createElement("p")
     var iconContainer = document.createElement('span')
     var trashIcon = document.createElement("i");
     var editIcon = document.createElement("i");
@@ -27,8 +28,9 @@ const getPosts = () => {
     trashIcon.style.cursor = "pointer";
     editIcon.className = "fa-solid fa-pen";
     editIcon.style.cursor = "pointer"
-    todoItem.innerText = item.title; 
+    todoText.innerText = item.title; 
     todoList.appendChild(todoItem);
+    todoItem.appendChild(todoText)
     todoItem.appendChild(iconContainer)
     iconContainer.appendChild(editIcon);
     iconContainer.appendChild(trashIcon);
@@ -36,7 +38,7 @@ const getPosts = () => {
     itemCount++;
     setItemCount();
     todoItem.addEventListener('click', function(){
-        todoItem.style.textDecoration = "line-through";
+        todoText.style.textDecoration = "line-through";
     })
     todoItem.addEventListener('dblclick', function (){
         todoList.removeChild(todoItem);
@@ -108,6 +110,7 @@ setItemCount();
 
 const addItem = () => {
     var todoItem = document.createElement("p");
+    var todoText = document.createElement("p")
     var iconContainer = document.createElement('span');
     var trashIcon = document.createElement("i");
     var editIcon = document.createElement("i");
@@ -117,8 +120,9 @@ const addItem = () => {
     trashIcon.style.cursor = "pointer"
     editIcon.className = "fa-solid fa-pen";
     editIcon.style.cursor = "pointer"
-    todoItem.innerText = inputField.value; 
+    todoText.innerText = inputField.value; 
     todoList.appendChild(todoItem);
+    todoItem.appendChild(todoText)
     todoItem.appendChild(iconContainer)
     iconContainer.appendChild(editIcon);
     iconContainer.appendChild(trashIcon);
@@ -127,19 +131,25 @@ const addItem = () => {
     itemCount++;
     setItemCount();
     todoItem.addEventListener('click', function(){
-        todoItem.style.textDecoration = "line-through";
+        todoText.style.textDecoration = "line-through";
     })
-    todoItem.addEventListener('dblclick', function (){
-        todoList.removeChild(todoItem);
-        itemCount--;
-        setItemCount();
-    })
-    trashIcon.addEventListener('click', function (){
-        todoList.removeChild(todoItem);
-        itemCount--;
-        setItemCount();         
-    })
-}
+    
+      todoItem.addEventListener('dblclick', function (){
+                todoList.removeChild(todoItem);
+                itemCount--;
+                setItemCount();
+                deletePost(todo.id)
+            })
+   trashIcon.addEventListener('click', function (){
+                todoList.removeChild(todoItem);
+                itemCount--;
+                setItemCount();
+                deletePost(todo.id)        
+            })
+        
+    }
+    
+
 
 
 const clearList = () => {
